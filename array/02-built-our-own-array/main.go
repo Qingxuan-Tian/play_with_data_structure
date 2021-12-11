@@ -1,8 +1,10 @@
 package main
 
 import (
+
 	"../02-built-our-own-array/array"
 	"fmt"
+
 )
 func main(){
 	a:=array.New(5)
