@@ -2,10 +2,12 @@ package main
 
 import (
 	"../03-generic-data-structure/array"
+	"../03-generic-data-structure/student"
 	"fmt"
 )
 
 func main(){
+	//测试基本类型
 	a:=array.New(20)
 	for i:=0;i<10;i++{
 		a.AddLast(i)
@@ -19,6 +21,13 @@ func main(){
 	fmt.Println(a.FindAll(99))
 	a.RemoveAllElement(99)
 	fmt.Println(a.String())
+	//测试student类型
+	//根据名字找成绩，or根据成绩找名字，写额外的方法
+	students := array.New(20)
+	students.AddLast(student.New("xiaoming",99))
+	students.AddLast(student.New("xiaohong",100))
+	students.AddLast(1)
+	fmt.Println(students.String())
 
 
 }
