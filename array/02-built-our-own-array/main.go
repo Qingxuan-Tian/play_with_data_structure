@@ -6,6 +6,7 @@ import (
 )
 
 func main(){
+	//测试基本方法
 	a:=array.New(20)
 	for i:=0;i<10;i++{
 		a.AddLast(i)
