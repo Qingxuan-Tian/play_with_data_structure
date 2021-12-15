@@ -40,8 +40,10 @@ func (a *Array)IsEmpty()bool{
 }
 //指定位置插入元素
 func (a *Array)Add(index int, e interface{}){
+	//如果数组已满，cap扩容为原先的2倍
 	if a.size==len(a.data){
-		panic("array is full, can't add new element")
+		//panic("array is full, can't add new element")
+		a.resize(2*len(a.data))
 	}
 	if index<0||index>a.size{
 		panic("the index is wrong")
@@ -170,6 +172,9 @@ func (a *Array)Remove(index int)interface{}{
 		a.data[i-1]=a.data[i]
 	}
 	a.size--
+	if a.size==len(a.data)/4&&len(a.data)/2!=0{//lazy并且注意边界条件，当cap为1时，不能再减
+		a.resize(len(a.data)/2)
+	}
 	return ret
 
 }
@@ -217,5 +222,14 @@ func (a *Array)RemoveAllElement(e interface{})bool{
 	return true
 }
 
-
+/**
+实现动态数组，扩容，缩容操作
+ */
+func (a *Array)resize(newCap int){
+	var newData= make([]interface{}, newCap)
+	for i:=0;i<a.size;i++{
+		newData[i]=a.data[i]
+	}
+	a.data=newData
+}
 
